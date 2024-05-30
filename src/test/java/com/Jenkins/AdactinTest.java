@@ -17,7 +17,8 @@ public class AdactinTest {
 	
 	static WebDriver driver;
 	
-	@org.junit.Test
+
+	@org.testng.annotations.BeforeClass
 	public void browserLaunch() {
 		
 		WebDriverManager.chromedriver().setup();
@@ -25,19 +26,20 @@ public class AdactinTest {
 		driver.manage().window().maximize();
 	}
 
-	@org.junit.Test
+	@BeforeMethod
 	public void getURL() {
 		driver.get("https://adactinhotelapp.com/");
 	}
 	
-	@org.junit.Test
+	@BeforeMethod
 	public void login() {
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("Jivita04");
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
 		driver.findElement(By.xpath("//input[@id='login']")).click();
 	}
 	
-	@org.junit.Test
+
+	@Test
 	public void searchAndBookHotel() throws Throwable {
 
 		WebElement location = driver.findElement(By.xpath("//select[@id='location']"));
@@ -99,7 +101,7 @@ public class AdactinTest {
 		driver.findElement(By.xpath("//input[@id='logout']")).click();
 	}
 	
-	@org.junit.Test
+	@AfterMethod 
 	public void browserClose() {
 		driver.close();
 	}
